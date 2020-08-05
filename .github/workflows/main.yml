@@ -61,6 +61,11 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
+    - name: Save SSH Known Hosts
+      id: hosts
+      run: |
+        echo "::set-output name=value::$(ssh-keyscan sftp.flywheelsites.com)"
+
     # Deploys to FTP
     - name: FTP Deploy
       uses: SamKirkland/FTP-Deploy-Action@3.1.1
@@ -76,3 +81,5 @@ jobs:
 
         # The local folder to copy, defaults to root project folder
         local-dir: ${{ env.SFTP_SOURCE }}
+
+        known-hosts: ${{ steps.hosts.outputs.value }}
