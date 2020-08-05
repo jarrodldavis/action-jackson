@@ -1,0 +1,78 @@
+# This is a basic workflow to deploy a git repository to Flywheel
+
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the main branch
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "deploy"
+  deploy:
+    # The following settings are used to configure the login details and SFTP path for deploying
+    # a `wp-content` directory to sftp://sftp.flywheelsites.com/<site-owner>/<site-name>/wp-content
+    env:
+      # The folder in the git repository to upload to the SFTP server
+      # Be sure this points to the `wp-content` folder
+      # If the root of your repository is the contents of `wp-content`
+      # (i.e. `themes` and `plugins` are top-level folders), use ./ here
+
+      # SFTP_SOURCE: ./path/to/wp-content
+      SFTP_SOURCE: ./
+
+      # The Flywheel owner of the site to deploy to
+      # Using an SFTP url of `sftp://sftp.flywheelsites.com/my-user-name/my-site-name/wp-content`,
+      # you would set `SFTP_OWNER` to `my-user-name`
+
+      # SFTP_OWNER: my-username
+      # SFTP_OWNER: org-my-organization-name
+      SFTP_OWNER: jarrodldavis
+
+      # The site ID used to access the site's files in SFTP
+      # Using an SFTP url of `sftp://sftp.flywheelsites.com/my-user-name/my-site-name/wp-content`,
+      # you would set `SFTP_SITE` to `my-site-name`
+
+      # SFTP_SITE: my-site-name
+      SFTP_SITE: action-jackson
+
+      # Your Flywheel username
+      # Keep in mind that this is the username that *you* use to login to Flywheel and
+      # may be different from the site's owner
+
+      # SFTP_USER: my-username
+      SFTP_USER: jarrodldavis
+
+      # Be sure to also configure an `SFTP_PASSWORD` secret in your repository settings
+      # https://github.com/jarrodldavis/action-jackson/settings/secrets
+
+    name: Deploy
+
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+
+    # Deploys to FTP
+    - name: FTP Deploy
+      uses: SamKirkland/FTP-Deploy-Action@3.1.1
+      with:
+        # Deployment destination server & path. Formatted as protocol://domain.com:port/full/destination/path/
+        ftp-server: sftp://sftp.flywheelsites.com/${{ env.SFTP_OWNER }}/${{ env.SFTP_SITE }}/wp-content/
+
+        # FTP account username
+        ftp-username: ${{ env.SFTP_USER }}
+
+        # FTP account password
+        ftp-password: ${{ secrets.SFTP_PASSWORD }}
+
+        # The local folder to copy, defaults to root project folder
+        local-dir: ${{ env.SFTP_SOURCE }}
