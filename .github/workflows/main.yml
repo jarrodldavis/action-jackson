@@ -48,7 +48,7 @@ jobs:
       SFTP_USER: jarrodldavis
 
       # Be sure to also configure an `SFTP_PASSWORD` secret in your repository settings
-      # https://github.com/jarrodldavis/action-jackson/settings/secrets
+      # https://docs.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets#creating-encrypted-secrets-for-a-repository
 
     name: Deploy
 
