@@ -1,13 +1,12 @@
 # Action Jackson
 
-> A template for developing a WordPress site locally in Visual Studio Code and
-> deploying to Flywheel
+> A template for developing a WordPress site locally in Visual Studio Code and deploying to Flywheel.
 
 ## Overview
 
-This template contains the necessary configuration to work on a WordPress site:
+This template contains the necessary configuration to set up a WordPress site:
 
-- in development, using development containers with Visual Studio Code and Docker
+- in development, using local containers with Visual Studio Code and Docker
 - in production, using GitHub Actions to deploy changes to Flywheel
 
 ## Usage
