@@ -53,7 +53,7 @@ This is the Flywheel user or [Organization][flywheel-orgs] that owns the site. K
 
 ### `SFTP_SITE`
 
-This is the site name (sometimes called a "slug") for the site, as you would see in your SFTP client. This corresponds to the [kebab-cased][kebab-casing] site name as configured in the Flywheel Dashboard.
+This is the [kebab-cased][kebab-casing] version of the site name (sometiems called a ["slug"][url-slug]), as you would see in your SFTP client. This corresponds to the site name as configured in the Flywheel Dashboard.
 
 #### Examples
 
@@ -88,5 +88,7 @@ This is the username you use to log into Flywheel. Keep in mind that this may be
 [env-values]: https://github.com/jarrodldavis/action-jackson/blob/50358697f17328631d095d556959e7638c2adcfc/.github/workflows/main.yml#L19-L51
 
 [kebab-casing]: https://en.wikipedia.org/wiki/Kebab-case
+
+[url-slug]: https://en.wikipedia.org/wiki/Slug_(web_publishing)
 
 [repo-secret]: https://docs.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets#creating-encrypted-secrets-for-a-repository
