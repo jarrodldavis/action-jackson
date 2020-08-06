@@ -1,0 +1,17 @@
+# Visual Studio Code configuration
+.devcontainer/*
+.vscode/*
+
+# git files
+.git/*
+.gitignore
+
+# GitHub files
+.github/*
+
+# `git-ftp` lists
+.git-ftp-ignore
+.git-ftp-include
+
+# Template files
+README.md
